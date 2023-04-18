@@ -7,6 +7,11 @@ namespace Kernel;
 use Exception;
 use DI\ContainerBuilder;
 use Psr\Container\ContainerInterface;
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Psr\Http\Message\ResponseFactoryInterface;
+
+use function DI\create;
+use function DI\get;
 
 final class Definitions
 {
@@ -14,12 +19,15 @@ final class Definitions
     public static function container(string $root): ContainerInterface
     {
         $builder = new ContainerBuilder();
-        self::registerDefinitions($builder, $root);
+        self::registerDependencies($builder, $root);
 
         return $builder->build();
     }
 
-    protected static function registerDefinitions(ContainerBuilder $builder, string $root): void
+    protected static function registerDependencies(ContainerBuilder $builder, string $root): void
     {
+        $builder->addDefinitions([
+            ResponseFactoryInterface::class => create(Psr17Factory::class)->constructor()
+        ]);
     }
 }

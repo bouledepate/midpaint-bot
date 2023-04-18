@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Kernel;
 
+use App\Provider;
 use Exception;
+use Kernel\Components\Routing\Router;
 use Slim\App;
 use Slim\Factory\AppFactory;
 use Psr\Container\ContainerInterface;
@@ -35,13 +37,25 @@ final class KernelFactory
 
     protected function applyConfigurations(App $app): App
     {
+        $this->applyRoutes($app);
+        $this->applyMiddlewares($app);
+
+        return $app;
+    }
+
+    protected function applyRoutes(App $app): void
+    {
+        $routes = Provider::routes();
+        Router::apply($app, ...$routes);
+    }
+
+    protected function applyMiddlewares(App $app): void
+    {
         $app->addBodyParsingMiddleware();
         $app->addErrorMiddleware(
             (bool)$_ENV['ERROR_DETAILS'],
             (bool)$_ENV['LOG_ERRORS'],
             (bool)$_ENV['LOG_ERROR_DETAILS']
         );
-
-        return $app;
     }
 }
