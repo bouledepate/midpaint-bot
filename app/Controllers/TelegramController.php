@@ -6,7 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 
-final class CommandController
+final class TelegramController
 {
     public function __construct(
         private readonly ResponseFactoryInterface $factory

@@ -16,6 +16,11 @@ final class Route
     {
     }
 
+    public static function post(string $pattern, array|string $handler): self
+    {
+        return new self(['POST'], $pattern, $handler);
+    }
+
     public static function any(string $pattern, array|string $handler): self
     {
         return new self(['GET', 'POST', 'DELETE', 'PUT', 'PATCH', 'OPTIONS'], $pattern, $handler);
