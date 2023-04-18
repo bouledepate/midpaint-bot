@@ -6,10 +6,10 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 
-final readonly class CommandController
+final class CommandController
 {
     public function __construct(
-        private ResponseFactoryInterface $factory
+        private readonly ResponseFactoryInterface $factory
     )
     {
     }
