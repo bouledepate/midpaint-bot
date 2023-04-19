@@ -9,7 +9,7 @@ call_user_func(static function () {
     $env = Dotenv::createUnsafeImmutable(realpath(__DIR__ . '/../../'));
     $env->load();
 
-    $env->required(['TOKEN'])->notEmpty();
+    $env->required(['TOKEN', 'VERSION'])->notEmpty();
     $env->required(['ERROR_DETAILS', 'LOG_ERRORS', 'LOG_ERROR_DETAILS'])->isBoolean();
     $env->required('ENVIRONMENT')->allowedValues([
         Environment::DEVELOP->value,
