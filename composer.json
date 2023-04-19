@@ -12,7 +12,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Midpaint\\": "src/",
+            "Midpaint\\": "src/Midpaint",
             "Kernel\\": "src/Kernel",
             "App\\": "app/"
         }

@@ -6,6 +6,9 @@ namespace Kernel;
 
 use Exception;
 use DI\ContainerBuilder;
+use Midpaint\Application\Handlers\TelegramHandler;
+use Midpaint\Application\MessageFactory;
+use Midpaint\Telegram\Services\TypeCastFactory;
 use Psr\Container\ContainerInterface;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Http\Message\ResponseFactoryInterface;
@@ -27,7 +30,11 @@ final class Definitions
     protected static function registerDependencies(ContainerBuilder $builder, string $root): void
     {
         $builder->addDefinitions([
-            ResponseFactoryInterface::class => create(Psr17Factory::class)->constructor()
+            ResponseFactoryInterface::class => create(Psr17Factory::class)->constructor(),
+            MessageFactory::class => create(TypeCastFactory::class)->constructor(),
+            TelegramHandler::class => create(TelegramHandler::class)->constructor(
+                get(MessageFactory::class)
+            )
         ]);
     }
 }
