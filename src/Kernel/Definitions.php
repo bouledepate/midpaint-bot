@@ -30,11 +30,7 @@ final class Definitions
     protected static function registerDependencies(ContainerBuilder $builder, string $root): void
     {
         $builder->addDefinitions([
-            ResponseFactoryInterface::class => create(Psr17Factory::class)->constructor(),
-            MessageFactory::class => create(TypeCastFactory::class)->constructor(),
-            TelegramHandler::class => create(TelegramHandler::class)->constructor(
-                get(MessageFactory::class)
-            )
+            ResponseFactoryInterface::class => create(Psr17Factory::class)->constructor()
         ]);
     }
 }
