@@ -18,7 +18,6 @@ final class Kernel
     public function __construct()
     {
         $this->app = $this->build();
-        $this->registerBot();
     }
 
     /** @throws Exception */
@@ -26,12 +25,6 @@ final class Kernel
     {
         $factory = new KernelFactory();
         return $factory->createApplication();
-    }
-
-    /** @throws TelegramException */
-    protected function registerBot(): void
-    {
-        $this->bot = new Telegram($_ENV['TOKEN']);
     }
 
     public function run(): void

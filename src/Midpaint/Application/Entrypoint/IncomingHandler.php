@@ -20,6 +20,4 @@ final class IncomingHandler
 
         return new IncomingResponse(true, []);
     }
-
-
 }

@@ -7,6 +7,8 @@ namespace Kernel;
 use App\Provider;
 use Exception;
 use Kernel\Components\Routing\Router;
+use Longman\TelegramBot\Exception\TelegramException;
+use Longman\TelegramBot\Telegram;
 use Slim\App;
 use Slim\Factory\AppFactory;
 use Psr\Container\ContainerInterface;
@@ -28,8 +30,10 @@ final class KernelFactory
         return Definitions::container();
     }
 
+    /** @throws TelegramException */
     protected function createNewApplication(ContainerInterface $container): App
     {
+        $this->registerBot();
         return $this->applyConfigurations(
             AppFactory::createFromContainer($container)
         );
@@ -57,5 +61,11 @@ final class KernelFactory
             (bool)$_ENV['LOG_ERRORS'],
             (bool)$_ENV['LOG_ERROR_DETAILS']
         );
+    }
+
+    /** @throws TelegramException */
+    protected function registerBot(): void
+    {
+        new Telegram($_ENV['TOKEN']);
     }
 }
