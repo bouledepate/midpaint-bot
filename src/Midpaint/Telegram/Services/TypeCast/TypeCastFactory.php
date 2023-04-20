@@ -42,7 +42,7 @@ final class TypeCastFactory implements TelegramObjectFactory
             date: new Date(DateTimeImmutable::createFromFormat(
                 format: DATE_ATOM,
                 datetime: date(DATE_ATOM, $message['date']),
-                timezone: new \DateTimeZone('Asia/Almaty')
+                timezone: new \DateTimeZone('UTC')
             )),
             text: new Text($message['text'] ?? null),
             from: $message['from'] ?? null,

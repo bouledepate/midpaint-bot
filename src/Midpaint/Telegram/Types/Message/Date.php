@@ -11,6 +11,6 @@ final class Date extends DateValueObject
 {
     public function __construct(DateTimeInterface $date)
     {
-        $this->value = $date;
+        $this->value = $date->setTimezone(new \DateTimeZone('Asia/Almaty'));
     }
 }
