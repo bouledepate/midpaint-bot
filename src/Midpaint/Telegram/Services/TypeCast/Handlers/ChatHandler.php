@@ -48,7 +48,7 @@ final class ChatHandler extends AbstractTypeHandler
                 $id,
                 $type,
                 $username,
-                new Title($type['title'] ?? null)
+                new Title($data['title'] ?? null)
             )
         };
     }

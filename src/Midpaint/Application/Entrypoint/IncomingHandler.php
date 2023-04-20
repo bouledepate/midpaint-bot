@@ -4,20 +4,31 @@ declare(strict_types=1);
 
 namespace Midpaint\Application\Entrypoint;
 
+use Midpaint\Application\Telegram\TelegramCommandResolver;
 use Midpaint\Application\Telegram\TelegramObjectFactory;
 
 final class IncomingHandler
 {
     public function __construct(
-        private readonly TelegramObjectFactory $factory
+        private readonly TelegramObjectFactory   $factory,
+        private readonly TelegramCommandResolver $resolver
     )
     {
     }
 
-    public function handle(IncomingRequest $request): IncomingResponse
+    public function handle(IncomingRequest $request): void
     {
-        $message = $this->factory->produce($request->message());
+        if (is_null($request->message())) {
+            return;
+        }
 
-        return new IncomingResponse(true, []);
+        $message = $this->factory->produce($request->message());
+        $command = $this->resolver->resolve($message);
+
+        if (!$command) {
+            return;
+        }
+
+        $response = $command->execute();
     }
 }

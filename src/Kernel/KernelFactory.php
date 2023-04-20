@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Kernel;
 
-use App\Provider;
-use Exception;
-use Kernel\Components\Routing\Router;
-use Longman\TelegramBot\Exception\TelegramException;
-use Longman\TelegramBot\Telegram;
 use Slim\App;
+use Exception;
+use App\Provider;
 use Slim\Factory\AppFactory;
+use Longman\TelegramBot\Telegram;
+use Kernel\Components\Routing\Router;
 use Psr\Container\ContainerInterface;
+use Longman\TelegramBot\Exception\TelegramException;
 
 final class KernelFactory
 {
@@ -66,6 +66,6 @@ final class KernelFactory
     /** @throws TelegramException */
     protected function registerBot(): void
     {
-        new Telegram($_ENV['TOKEN']);
+        new Telegram($_ENV['BOT_TOKEN'], $_ENV['BOT_USERNAME']);
     }
 }

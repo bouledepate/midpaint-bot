@@ -27,11 +27,7 @@ final class IncomingController
         if (Environment::current() === Environment::DEVELOP) {
             $this->debugIncomingRequest($request);
         }
-
-        $response = $this->handler->handle(
-            $this->createRequest($request)
-        );
-
+        $this->handler->handle($this->createRequest($request));
         return $this->factory->createResponse(204);
     }
 

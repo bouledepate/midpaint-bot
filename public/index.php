@@ -11,7 +11,7 @@ try {
     $application->run();
 } catch (Throwable $exception) {
     file_put_contents(
-        'php://stderr',
+        'error.log',
         "Something went wrong: "
         . $exception->getMessage() . " | "
         . $exception->getTraceAsString() . " | "
