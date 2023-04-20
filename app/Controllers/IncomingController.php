@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use Kernel\Environment;
-use Longman\TelegramBot\Request;
-use Longman\TelegramBot\Telegram;
-use Midpaint\Application\Entrypoint\IncomingHandler;
-use Midpaint\Application\Entrypoint\IncomingRequest;
-use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseFactoryInterface;
+use Midpaint\Application\Entrypoint\IncomingHandler;
+use Midpaint\Application\Entrypoint\IncomingRequest;
 
 final class IncomingController
 {
