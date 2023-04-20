@@ -25,7 +25,7 @@ final class KernelFactory
     /** @throws Exception */
     protected function createContainer(): ContainerInterface
     {
-        return Definitions::container(realpath(self::ROOT_PATH));
+        return Definitions::container();
     }
 
     protected function createNewApplication(ContainerInterface $container): App
