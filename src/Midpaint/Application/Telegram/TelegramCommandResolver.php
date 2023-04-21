@@ -9,5 +9,5 @@ use Midpaint\Telegram\Types\Message\Message;
 
 interface TelegramCommandResolver
 {
-    public function resolve(Message $message): ?Command;
+    public function resolve(Message $message): ?string;
 }

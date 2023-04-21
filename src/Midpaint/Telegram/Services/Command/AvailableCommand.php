@@ -8,9 +8,7 @@ use Kernel\Components\ValueObject\EnumValueObject;
 
 enum AvailableCommand: string implements EnumValueObject
 {
-    case HELP = '/help';
-    case START = '/start';
-    case PROMPT = '/prompt';
+    case TEST = '/test';
     case UNDEFINED = 'undefined';
 
     public function value(): string
