@@ -23,7 +23,7 @@ final class MongoDBClient
         $this->client = new Client("mongodb://{$_ENV['DB_HOST']}:{$_ENV['DB_PORT']}", [
             'username' => $_ENV['DB_USERNAME'],
             'password' => $_ENV['DB_PASSWORD'],
-            'authSource' => 'midpaint_db',
+            'authSource' => $_ENV['DB_NAME'],
             'authMechanism' => 'SCRAM-SHA-1',
         ]);
     }
